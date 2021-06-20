@@ -1,0 +1,21 @@
+site_name: Hammer Game Handbook
+repo_url: https://github.com/mammoth-games/hammer
+extra_css:
+  - stylesheets/extra.css
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      primary: green
+      accent: green
+      scheme: default
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: green
+      accent: green
+      scheme: slate
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
