@@ -10,6 +10,8 @@ markdown_extensions:
 
 theme:
   name: material
+  favicon: img/site/dude_small.png
+  logo: img/site/hammer_small.png
   palette:
     - media: "(prefers-color-scheme: light)"
       primary: light blue
