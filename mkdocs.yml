@@ -2,20 +2,31 @@ site_name: Hammer Game Handbook
 repo_url: https://github.com/mammoth-games/hammer
 extra_css:
   - stylesheets/extra.css
+edit_uri: edit/master/docs/
+nav:
+    - Home: 'index.md'
+    - Specification: 'CostumeSpecification.md'
 theme:
   name: material
   palette:
     - media: "(prefers-color-scheme: light)"
-      primary: green
-      accent: green
+      primary: light blue
+      accent: blue
       scheme: default
       toggle:
         icon: material/toggle-switch-off-outline
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-      primary: green
-      accent: green
+      primary: light blue
+      accent: blue
       scheme: slate
       toggle:
         icon: material/toggle-switch
         name: Switch to light mode
+markdown_extensions:
+    - pymdownx.highlight:
+        linenums_style: pymdownx.inline
+    - pymdownx.superfences
+    - pymdownx.inlinehilite
+    - pymdownx.keys
+    - admonition
