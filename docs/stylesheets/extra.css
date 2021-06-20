@@ -1,3 +1,12 @@
+@font-face {
+	font-family: "CMU";
+	src: url(/docs/fonts/cmunrm.ttf);
+}
+
+:root {
+	--md-text-font-family: "CMU"
+}
+
 [data-md-color-scheme="slate"] {
 	--md-default-bg-color: hsla(var(--md-hue), 15%, 7%, 1);
 }
