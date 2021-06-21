@@ -16,7 +16,7 @@ A costume is a set of textured meshes that are welded to the character. A costum
 | Torso | LeftArm, RightArm, Torso |
 | Legs | LeftLeg, RightLeg|
 
-<img src="./img/character_sections.png" alt="character sections" width="512"/>
+<img src="https://mammoth-games.github.io/hammer-handbook/img/character_sections.png" alt="character sections" width="512"/>
 
 Players can mix and match the 3 sections of any costumes they own.
 
