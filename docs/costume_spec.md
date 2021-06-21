@@ -1,3 +1,10 @@
+<link href='https://fonts.googleapis.com/css2?family=Rubik&display=swap' rel='stylesheet'>
+<style>
+body {
+    font-family: 'Rubik';
+}
+</style>
+
 # Costume Specification
 
 A costume is a set of textured meshes that are welded to the character. A costume is composed of 3 sections: Head, Body, and Legs. Each section contains meshes that are welded to specific body parts of the character.
