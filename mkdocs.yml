@@ -30,7 +30,8 @@ theme:
 markdown_extensions:
     - pymdownx.highlight:
         linenums_style: pymdownx.inline
-    - pymdownx.superfences
     - pymdownx.inlinehilite
     - pymdownx.keys
+    - pymdownx.superfences
+    - pymdownx.tabbed
     - admonition
