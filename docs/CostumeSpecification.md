@@ -60,8 +60,8 @@ For transparency between modelers and programmers, here is the metadata for each
 
 | Category | Variable | Value type | Required |
 | --- | --- | --- | :---: |
-| | CostumeName | `string` | ✓ |
-| | VariationName | `string` | ✓ |
+| | CostumeName | `string` | ✔️ |
+| | VariationName | `string` | ✔️ |
 | Head | | |
 | | HeadHidden | `boolean` |
 | | HeadMeshId | `rbxassetid://` |
