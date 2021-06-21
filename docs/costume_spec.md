@@ -38,7 +38,7 @@ Humanoid costumes (ex. pirate, chef, miner) have skin exposed. It is important t
 ## Texturing
 In general, we are aiming for a style with a low amount of colors per character. Therefore, textures should only be a few pixels wide and tall. This is not a steadfast rule, however, so do not let it compromise your artistic vision.
 
-## Costume pipeline
+## Pipeline
 1. Modeler creates the costume
 2. Modeler organizes the file to follow this specification
 3. Modeler uploads the file to the drive
@@ -48,11 +48,11 @@ In general, we are aiming for a style with a low amount of colors per character.
 7. Programmer incorporates the metadata, meshes, and textures into the game
 
 ## Naming requirements
-1. Name the blend file `[Costume]_[Variation]_Costume`. *(ex: Pirate_Blackbeard_Costume.blend)*
+1. Name the blend file `[Costume]_[Variation]_Costume`. *(ex: Pirate_Patchy_Costume.blend)*
 1. Put the unaltered rig in a `Rig` collection. Keep the default body parts that the costume does not override; delete the rest. *(ex: Snorkeler wears a bathing suit that doesn't alter the arms, so they are kept)*
 	* Prefix the name of each default body part mesh with `Rig`. This is to differentiate them from costume meshes.
 	* These meshes will not be imported to Roblox but are helpful in previewing the full costume.
-1. Put the costume meshes in a `[Costume]_[Variation]` collection. *(ex: Pirate_Blackbeard)*
+1. Put the costume meshes in a `[Costume]_[Variation]` collection. *(ex: Pirate_Patchy)*
 1. For each of the 6 body parts:
 	* If only one mesh corresponds to a body part, name it `[BodyPart]`. *(ex: LeftLeg)*
 	* If multiple objects correspond to the same body part, put them in a collection named `[BodyPart]`. Name each object in this sub-collection `[BodyPart]_[MeshName]`. *(ex: Head_Eyepatch)*
