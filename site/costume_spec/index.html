@@ -463,7 +463,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/mammoth-games/hammer/edit/master/docs/CostumeSpecification.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/mammoth-games/hammer/edit/master/docs/costume_spec.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -476,7 +476,7 @@
 </ol>
 <p>These stem from the memory limitations of mobile hardware; the importance of reducing texture and mesh memory cannot be overstated.</p>
 <h2 id="general-information">General Information</h2>
-<p>A costume is a set of textured meshes that are welded to the character. A costume is composed of 3 sections: Head, Torso, and Legs. Each section is further composed of meshes that are welded to specific body parts of the character.</p>
+<p>A costume is a set of textured meshes that are welded to the character. A costume is composed of 3 sections: Head, Torso, and Legs. Each section contains meshes that are welded to specific body parts of the character.</p>
 <table>
 <thead>
 <tr>
@@ -499,19 +499,22 @@
 </tr>
 </tbody>
 </table>
-<p><img src="https://mammoth-games.github.io/hammer-handbook/img/character_sections.png" alt="character sections" width="512"/></p>
+<p><img alt="starter character" src="../img/starter_character.png" /></p>
 <p>Players can mix and match the 3 sections of any costumes they own.</p>
 <h3 id="variations">Variations</h3>
-<p>Costumes may have multiple variations. Variations may use unique meshes and unique textures for body parts. Variations may also reuse meshes and textures for body parts. If a variation reuses a mesh, that mesh will not be re-uploaded.</p>
+<p>A costume can have multiple variations. A variation can be entirely unique or consist of a mix of unique/reused meshes and unique/reused textures. Consider these two variations of a Pirate costume. Patchy has a unique head mesh and reused torso and leg meshes from Crewmate. Patchy also has entirely unique textures.</p>
+<p><img alt="pirates" src="../img/pirates.png" /></p>
+<p>In the case where a mesh or texture is reused, that mesh or texture will not be re-uploaded to Roblox.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Because reused meshes are not re-uploaded, you are bound to the UV map of the original mesh. Keep this in mind when you are creating the variation's texture.</p>
+<p>Because reused meshes are not re-uploaded, variations are stuck with the UV map of the original mesh. Keep this in mind when you are creating the variation's texture.</p>
 </div>
 <h3 id="eyes">Eyes</h3>
-<p>Costumes cannot have their own eye meshes, as an eye animation system will be used for facial expressions that react to the game. However, costumes can specify which eyes to hide and where they are located.</p>
+<p>Costumes cannot have their own eye meshes because we will use a separate eye animation system for facial expressions that react to the game. However, costumes can specify the 2D location of each eye and which eyes to hide. For example, Crewmate has its left eye hidden and Patchy has both eyes hidden. Also, Crewmate has its right eye shifted down because the pirate hat covers the eye in the default position.</p>
 <h3 id="skin">Skin</h3>
 <p>Humanoid costumes (ex. pirate, chef, miner) have skin exposed. It is important that players be able to customize their skin color. To accomplish this, map the UV islands of skin faces to a transparent pixel. This will allow for the color of the underlying Roblox object to show through, which will be the player's skin color.</p>
 <h2 id="texturing">Texturing</h2>
+<p>We are aiming for a style with a small number of solid colors per character. This means that textures should only be a few pixels wide and tall.</p>
 <h2 id="process">Process</h2>
 <ol>
 <li>Modeler creates the costume</li>
@@ -519,21 +522,22 @@
 <li>Modeler uploads the file to the drive</li>
 <li>Programmer downloads the file</li>
 <li>Programmer records the costume's metadata</li>
-<li>Programmer imports the individual meshes of the costume</li>
-<li>Programmer incorporates the metadata and meshes into the game</li>
+<li>Programmer imports the unique meshes and textures of the costume</li>
+<li>Programmer incorporates the metadata, meshes, and textures into the game</li>
 </ol>
 <h2 id="naming">Naming</h2>
 <ol>
-<li>Name the file <code>[costume]_[variation]_Costume.blend</code> <em>(ex: Pirate_Blackbeard_Costume.blend)</em></li>
+<li>Name the file <code>[Costume]_[Variation]_Costume.blend</code>. <em>(ex: Pirate_Blackbeard_Costume.blend)</em></li>
 <li>Put the unaltered rig in a <code>Rig</code> collection. Hide or delete any of the limbs that you don’t need. <em>(ex: Pirate doesn’t need the left leg because it would cover the peg leg)</em><ul>
 <li>These meshes will not be imported to Roblox but are helpful in previewing the costume in full context.</li>
 </ul>
 </li>
-<li>Put the costume meshes in a <code>[costume]_[variation]</code> collection. <em>(ex: Pirate_Blackbeard)</em></li>
+<li>Put the costume meshes in a <code>[Costume]_[Variation]</code> collection. <em>(ex: Pirate_Blackbeard)</em></li>
 <li>For each of the 6 body parts:<ul>
-<li>If only one mesh corresponds to a body part, name it <code>[body part]</code> <em>(ex: LeftLeg)</em></li>
-<li>If multiple objects correspond to a body part, put them in a collection named <code>[body part]</code>. Name each object in this sub-collection
-    <code>[body part]_[thing]</code>. <em>(ex: Head_Eyepatch)</em></li>
+<li>If only one mesh corresponds to a body part, name it <code>$[BodyPart]</code>. <em>(ex: $LeftLeg)</em></li>
+<li>If multiple objects correspond to the same body part, put them in a collection named <code>[BodyPart]</code>. Name each object in this sub-collection
+    <code>$[BodyPart]_[MeshName]</code>. <em>(ex: $Head_Eyepatch)</em></li>
+<li>The $ signs are to differentiate the costume meshes from the rig meshes.</li>
 </ul>
 </li>
 <li>Name every vertex object the same as its mesh name.<ul>
@@ -544,10 +548,10 @@
 <li>This is necessary. If you stick to the naming conventions, I can write a script to automate this step.</li>
 </ul>
 </li>
-<li>Put the Rig eyes in an <code>Eyes</code> collection in the <code>[costume]</code> collection. Position them as you please. Delete any unneeded eyes <em>(ex: Pirate doesn’t have a left eye due to the eye patch)</em>. If no eyes are needed, don’t create the <code>Eyes</code> collection.</li>
+<li>Put the Rig eyes in an <code>Eyes</code> collection in the <code>[Costume]_[Variation]</code> collection. Position them as you please. Delete any unneeded eyes <em>(ex: Crewmate doesn’t have a left eye due to the eye patch)</em>. If no eyes are needed, don’t create the <code>Eyes</code> collection.</li>
 </ol>
 <h2 id="metadata">Metadata</h2>
-<p>For transparency between modelers and programmers, here is the metadata for each costume that will be stored in the game.</p>
+<p>For transparency between modelers and programmers, here is the metadata that will be stored for each costume in-game.</p>
 <table>
 <thead>
 <tr>
@@ -561,14 +565,14 @@
 <tr>
 <td></td>
 <td>CostumeName</td>
-<td><code>string</code></td>
-<td align="center">✔️</td>
+<td>string</td>
+<td align="center">✓</td>
 </tr>
 <tr>
 <td></td>
 <td>VariationName</td>
-<td><code>string</code></td>
-<td align="center">✔️</td>
+<td>string</td>
+<td align="center">✓</td>
 </tr>
 <tr>
 <td>Head</td>
@@ -579,19 +583,19 @@
 <tr>
 <td></td>
 <td>HeadHidden</td>
-<td><code>boolean</code></td>
+<td>boolean</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>HeadMeshId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>HeadTextureId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
@@ -602,26 +606,38 @@
 </tr>
 <tr>
 <td></td>
+<td>LeftLegHidden</td>
+<td>boolean</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td></td>
 <td>LeftLegMeshId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>LeftLegTextureId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td></td>
+<td>RightLegHidden</td>
+<td>boolean</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>RightLegMeshId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>RightLegTextureID</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
@@ -632,38 +648,56 @@
 </tr>
 <tr>
 <td></td>
+<td>LeftArmHidden</td>
+<td>boolean</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td></td>
 <td>LeftArmMeshId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>LeftArmTextureId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td></td>
+<td>RightArmHidden</td>
+<td>boolean</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>RightArmMeshId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>RightArmTextureId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td></td>
+<td>TorsoHidden</td>
+<td>boolean</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>TorsoMeshId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>TorsoTextureId</td>
-<td><code>rbxassetid://</code></td>
+<td>rbxassetid</td>
 <td align="center"></td>
 </tr>
 <tr>
@@ -675,33 +709,33 @@
 <tr>
 <td></td>
 <td>LeftEyePosition</td>
-<td><code>Vector2</code></td>
+<td>Vector2</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>LeftEyeHidden</td>
-<td><code>boolean</code></td>
+<td>boolean</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>RightEyePosition</td>
-<td><code>Vector2</code></td>
+<td>Vector2</td>
 <td align="center"></td>
 </tr>
 <tr>
 <td></td>
 <td>RightEyeHidden</td>
-<td><code>boolean</code></td>
+<td>boolean</td>
 <td align="center"></td>
 </tr>
 </tbody>
 </table>
 <h3 id="implementation-details">Implementation details</h3>
 <ul>
-<li>If "_MeshId" is not specified, then "_TextureId" will be ignored</li>
 <li>If "_MeshId" is not specified, then the body part will fall back to the default character mesh</li>
+<li>If "_MeshId" is not specified, then "_TextureId" will be ignored</li>
 <li>"_Hidden" will hide a body part altogether</li>
 <li>If "_Hidden" is specified, then "_MeshId" and "_TextureId" are ignored</li>
 <li>If "_EyeHidden" is specified, then "_EyePosition" is ignored</li>
